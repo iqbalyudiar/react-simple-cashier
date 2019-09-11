@@ -1,14 +1,20 @@
 import React from "react";
 
-export default function TableHeader() {
+export default function TableHeader({
+  firstCol,
+  secondCol,
+  thirdCol,
+  fourthCol,
+  fifthCol
+}) {
   return (
     <thead>
       <tr>
-        <th>Item's Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Order's Price</th>
-        <th>Action</th>
+        <th>{firstCol}</th>
+        <th>{secondCol}</th>
+        <th>{thirdCol}</th>
+        <th>{fourthCol}</th>
+        <th>{fifthCol}</th>
       </tr>
     </thead>
   );

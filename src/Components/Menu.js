@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import InputMenu from "./Input/InputMenu";
+import InputMoney from "./Input/InputMoney";
 import TableCard from "./Table/TableCard";
 import TableHeader from "./Table/TableHeader";
 import TableMenu from "./Table/TableMenu";
@@ -10,19 +11,19 @@ export default function Menu() {
     id: 0,
     item: "",
     price: 0,
-    quantity: 0
+    quantity: 0,
+    money: 0
   });
   const [result, setResult] = useState({
     orderRes: 0
   });
   const [total, setTotal] = useState({
-    totalPrice: 0
+    totalPrice: 0,
+    change: 0
   });
 
   const [table, setTable] = useState({
-    list: [
-      { id: 0, item: "Nasi Goreng", price: 12000, quantity: 2, orderTab: 24000 }
-    ]
+    list: [{ id: "", item: "", price: "", quantity: "", orderTab: "" }]
   });
 
   const handleInput = e => {
@@ -48,6 +49,19 @@ export default function Menu() {
     });
   };
 
+  const addChange = () => {
+    let { totalPrice } = total;
+    let { money } = input;
+
+    if (money === " ") {
+      return alert("input your money");
+    } else {
+      setTotal({
+        change: money - totalPrice
+      });
+    }
+  };
+
   const deleteOrder = indexDelete => {
     setTable(({ list }) => ({
       list: list.filter((lists, index) => index !== indexDelete)
@@ -63,8 +77,10 @@ export default function Menu() {
 
     setTotal({ ...total, totalPrice: getTotal });
   };
+
   useEffect(() => {
     addTotal();
+    totalOrder();
     //return () => totalOrder();
   });
 
@@ -79,7 +95,13 @@ export default function Menu() {
       />
 
       <TableCard>
-        <TableHeader />
+        <TableHeader
+          firstCol="Item's Name"
+          secondCol="Price"
+          thirdCol="Quantity"
+          fourthCol="Order's Price"
+          fifthCol="Action"
+        />
         {table.list.map((lists, key) => {
           return (
             <TableMenu
@@ -93,6 +115,11 @@ export default function Menu() {
           );
         })}
         <TableFooter total={totalOrder} result={total.totalPrice} />
+      </TableCard>
+      <TableCard>
+        <TableHeader firstcol="" secondCol="" />
+        <InputMoney inputMoney={handleInput} process={addChange} />
+        <p>Your change is {total.change}</p>
       </TableCard>
     </div>
   );
