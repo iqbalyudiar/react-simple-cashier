@@ -23,7 +23,9 @@ export default function Menu() {
   });
 
   const [table, setTable] = useState({
-    list: [{ id: "", item: "", price: "", quantity: "", orderTab: "" }]
+    list: [
+      { id: 0, item: "Nasi goreng", price: 12000, quantity: 2, orderTab: 24000 }
+    ]
   });
 
   const handleInput = e => {
