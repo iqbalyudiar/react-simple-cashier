@@ -45,6 +45,25 @@ export default function Menu() {
     });
   };
 
+  // const deleteOrder = indexToDelete => {
+  //   setTable(({ list }) => ({
+  //     list: list.filter((toDo, index) => index !== indexToDelete)
+  //   }));
+  // };
+
+  const deleteOrder = indexDelete => {
+    setTable(({ list }) => ({
+      list: list.filter((lists, index) => index !== indexDelete)
+    }));
+  };
+
+  const totalOrder = () => {
+    const { orderTab } = table.list;
+
+    return orderTab.reduce((total, num) => {
+      return parseInt(total) + parseInt(num);
+    });
+  };
   useEffect(() => {
     addTotal();
   });
@@ -69,10 +88,11 @@ export default function Menu() {
               price={lists.price}
               quantity={lists.quantity}
               result={lists.orderTab}
+              deleteOrder={deleteOrder.bind(this, key)}
             />
           );
         })}
-        <TableFooter />
+        <TableFooter total={totalOrder} />
       </TableCard>
     </div>
   );

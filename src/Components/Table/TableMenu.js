@@ -1,6 +1,12 @@
 import React from "react";
 
-export default function TableMenu({ item, price, quantity, result }) {
+export default function TableMenu({
+  item,
+  price,
+  quantity,
+  result,
+  deleteOrder
+}) {
   return (
     <tbody>
       <tr>
@@ -8,7 +14,9 @@ export default function TableMenu({ item, price, quantity, result }) {
         <td>{price}</td>
         <td>{quantity}</td>
         <td>{result}</td>
-        <td>{/* <button onClick={this.props.deleteItem}>-</button> */}</td>
+        <td>
+          <button onClick={deleteOrder}>-</button>
+        </td>
       </tr>
     </tbody>
   );
