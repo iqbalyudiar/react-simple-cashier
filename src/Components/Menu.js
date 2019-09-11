@@ -15,6 +15,9 @@ export default function Menu() {
   const [result, setResult] = useState({
     orderRes: 0
   });
+  const [total, setTotal] = useState({
+    totalPrice: 0
+  });
 
   const [table, setTable] = useState({
     list: [
@@ -45,12 +48,6 @@ export default function Menu() {
     });
   };
 
-  // const deleteOrder = indexToDelete => {
-  //   setTable(({ list }) => ({
-  //     list: list.filter((toDo, index) => index !== indexToDelete)
-  //   }));
-  // };
-
   const deleteOrder = indexDelete => {
     setTable(({ list }) => ({
       list: list.filter((lists, index) => index !== indexDelete)
@@ -58,14 +55,17 @@ export default function Menu() {
   };
 
   const totalOrder = () => {
-    const { orderTab } = table.list;
+    const { list } = table;
 
-    return orderTab.reduce((total, num) => {
-      return parseInt(total) + parseInt(num);
-    });
+    let getTotal = list
+      .map(total => total.orderTab)
+      .reduce((sum, num) => sum + num);
+
+    setTotal({ ...total, totalPrice: getTotal });
   };
   useEffect(() => {
     addTotal();
+    //return () => totalOrder();
   });
 
   const { orderRes } = result;
@@ -92,7 +92,7 @@ export default function Menu() {
             />
           );
         })}
-        <TableFooter total={totalOrder} />
+        <TableFooter total={totalOrder} result={total.totalPrice} />
       </TableCard>
     </div>
   );
