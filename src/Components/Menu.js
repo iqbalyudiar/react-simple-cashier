@@ -65,9 +65,13 @@ export default function Menu() {
   };
 
   const deleteOrder = indexDelete => {
-    setTable(({ list }) => ({
-      list: list.filter((lists, index) => index !== indexDelete)
-    }));
+    if (table.list.length === 1) {
+      alert("You can't delete it");
+    } else {
+      setTable(({ list }) => ({
+        list: list.filter((lists, index) => index !== indexDelete)
+      }));
+    }
   };
 
   const totalOrder = () => {
