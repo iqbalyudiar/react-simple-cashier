@@ -55,8 +55,10 @@ export default function Menu() {
     let { totalPrice } = total;
     let { money } = input;
 
-    if (money === " ") {
+    if (money === " " || money === 0) {
       return alert("input your money");
+    } else if (money < totalPrice) {
+      return alert("Please add more money");
     } else {
       setTotal({
         change: money - totalPrice
