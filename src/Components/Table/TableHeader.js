@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function TableHeader({
+  zeroCol,
   firstCol,
   secondCol,
   thirdCol,
@@ -10,6 +11,7 @@ export default function TableHeader({
   return (
     <thead>
       <tr>
+        <th>{zeroCol}</th>
         <th>{firstCol}</th>
         <th>{secondCol}</th>
         <th>{thirdCol}</th>
