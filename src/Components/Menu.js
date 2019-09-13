@@ -98,44 +98,54 @@ export default function Menu() {
     setTable({
       list: [
         ...table.list,
-        { item: item, price: price, quantity: quantity, orderTab: orderRes }
+        {
+          id: table.list.length + 1,
+          item: item,
+          price: price,
+          quantity: quantity,
+          orderTab: orderRes
+        }
       ]
     });
   };
 
-  const deleteOrder = indexDelete => {
+  const deleteOrder = id => {
     if (table.list.length === 1) {
       alert("You can't delete it");
     } else {
       setTable(({ list }) => ({
-        list: list.filter((lists, index) => index !== indexDelete)
+        list: list.filter(lists => lists.id !== id)
       }));
     }
   };
 
-  const updateOrder = (id, updateOrder) => {
+  const updateOrder = () => {
     setEditing(false);
 
     setTable(({ list }) => ({
-      list: list.map(lists => (lists.id === id ? updateOrder : lists))
+      list: list.map(lists =>
+        lists.id === currentOrder.id ? currentOrder : lists
+      )
     }));
   };
 
-  const editOrder = () => {
+  const editOrder = id => {
     const { list } = table;
 
     // currentOrder.id = 0;
 
     setEditing(true);
 
-    list.map(orders =>
-      setCurrentOrder({
-        id: orders.id,
-        item: orders.item,
-        price: orders.price,
-        quantity: orders.quantity,
-        orderTab: orders.orderTab
-      })
+    list.map(
+      orders =>
+        id === orders.id &&
+        setCurrentOrder({
+          id: orders.id,
+          item: orders.item,
+          price: orders.price,
+          quantity: orders.quantity,
+          orderTab: orders.orderTab
+        })
     );
   };
 
@@ -148,6 +158,9 @@ export default function Menu() {
     totalOrder();
     //return () => totalOrder();
   });
+
+  // console.log(updateOrder(id));
+  // console.log(updateOrder(updateOrder));
 
   const { orderRes } = result;
 
@@ -187,8 +200,8 @@ export default function Menu() {
               price={lists.price}
               quantity={lists.quantity}
               result={lists.orderTab}
-              deleteOrder={deleteOrder.bind(this, key)}
-              editOrder={editOrder.bind(this, key)}
+              deleteOrder={() => deleteOrder(lists.id)}
+              editOrder={() => editOrder(lists.id)}
             />
           );
         })}
