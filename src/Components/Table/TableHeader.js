@@ -9,7 +9,7 @@ export default function TableHeader({
   fifthCol
 }) {
   return (
-    <thead>
+    <thead id="tableHeader">
       <tr>
         <th>{zeroCol}</th>
         <th>{firstCol}</th>

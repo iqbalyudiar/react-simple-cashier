@@ -1,8 +1,9 @@
 import React from "react";
+import "./InputMoney.css";
 
 export default function InputMoney({ inputMoney, process }) {
   return (
-    <div>
+    <div id="inputMoney">
       <td>
         <p>Input your money</p>
       </td>

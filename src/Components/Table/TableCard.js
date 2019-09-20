@@ -1,10 +1,11 @@
 import React from "react";
+import "./Table.css";
 
 export default function TableCard({ title, children }) {
   return (
-    <div>
+    <div id="TableCard" className="container center">
       <h2>{title}</h2>
-      <table>{children}</table>
+      <table cellPadding="10">{children}</table>
     </div>
   );
 }

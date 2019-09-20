@@ -17,9 +17,13 @@ export default function TableMenu({
         <td>{price}</td>
         <td>{quantity}</td>
         <td>{result}</td>
-        <td>
-          <button onClick={deleteOrder}>delete</button>
-          <button onClick={editOrder}>edit</button>
+        <td id="buttonOrder2">
+          <button id="edit" onClick={editOrder}>
+            edit
+          </button>
+          <button id="delete" onClick={deleteOrder}>
+            delete
+          </button>
         </td>
       </tr>
     </tbody>

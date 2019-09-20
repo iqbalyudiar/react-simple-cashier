@@ -1,0 +1,56 @@
+table{
+    border-collapse: collapse
+}
+
+#TableCard{
+    text-align: center;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 0.75em;
+}
+
+#TableCard #tableHeader{
+    background: rgba(0, 80, 122,1);
+    width:100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#TableCard #tableHeader th {
+    border: #006194 solid 1px;
+}
+/* th, td {
+    border: 1px solid #006; */
+  /* } */
+#TableCard tbody{
+    background: #006da6;
+    width:100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+#TableCard tbody td{
+    border: #006194 solid 1px;
+}
+
+#TableCard tfoot{
+    background: #075075;
+}
+
+#buttonOrder2{
+    display: flex;
+}
+#edit{
+    background: #009c43;
+    color: #fff;
+    border-radius: 0.75em;
+    padding: 0.75em 1.5em 0.75em 1.5em;
+    margin-right: 1em;
+}
+#delete{
+    background: red;
+    color: #fff;
+    border-radius: 0.75em;
+    padding: 0.75em 1em 0.75em 1em;
+    
+}

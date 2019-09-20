@@ -1,0 +1,9 @@
+#change{
+    background: rgba(0,0,0,0.8);
+    padding:1em;
+    width:50%;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid transparent;
+    border-radius: 0.75em
+}

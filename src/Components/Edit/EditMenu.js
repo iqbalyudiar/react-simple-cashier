@@ -1,13 +1,16 @@
 import React from "react";
+import "./EditMenu.css";
 
 export default function EditMenu({
+  addTotalUpdate,
   editItem,
   editOrder,
   currentOrder,
   closeEditing
 }) {
   return (
-    <div>
+    <div id="editMenu" className="flex-container container center">
+      <h3>Please Edit Your Menu</h3>
       <input
         name="item"
         type="text"
@@ -31,12 +34,18 @@ export default function EditMenu({
         onChange={editItem}
       />
       <input readOnly id="order" type="text" value={currentOrder.orderTab} />
-      <button id="entry" onClick={editOrder}>
-        Update
-      </button>
-      <button id="entry" onClick={closeEditing}>
-        Cancel
-      </button>
+
+      <div id="buttonOrderEdit">
+        <button id="addTotalUpdate" onClick={addTotalUpdate}>
+          add
+        </button>
+        <button id="update" onClick={editOrder}>
+          Update
+        </button>
+        <button id="close" onClick={closeEditing}>
+          Cancel
+        </button>
+      </div>
     </div>
   );
 }

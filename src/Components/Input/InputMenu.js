@@ -1,8 +1,25 @@
 import React from "react";
+import "./InputMenu.css";
 
-export default function InputMenu({ result, inputItem, addOrder }) {
+export default function InputMenu({ validation, result, inputItem, addOrder }) {
+  // let inputValidation = {
+  //   border: "1px solid red"
+  // };
+  // const [styles, setStyles] = useState(inputStyles);
+  // if (item === "" && price === "" && quantity === "") {
+  //   setStyles({ inputStyles: "1px solid red" });
+  // } else {
+  //   setStyles({ inputStyles: "1px solid black" });
+  // }
+
   return (
-    <div>
+    <div id="inputMenu" className="flex-container center">
+      <h3>Please Input Your Menu</h3>
+      {validation === true && (
+        <p id="validation">
+          Please input your order in the form, your order cannot be empty
+        </p>
+      )}
       <input
         name="item"
         type="text"
