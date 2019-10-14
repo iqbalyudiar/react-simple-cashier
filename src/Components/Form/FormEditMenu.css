@@ -1,0 +1,64 @@
+#editMenu{
+    background: rgba(0,0,0,0.8);
+    padding-bottom:1em;
+    width:50%;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid transparent;
+    border-radius: 0.75em
+}
+#editMenu input {
+    border-radius: 5px;
+}
+
+#editMenu input:focus{
+    border: #009dff solid 3px
+}
+
+#editMenu #buttonOrderEdit{
+    display: flex;
+    box-sizing: border-box
+
+}
+#editMenu button{
+    color: #fff;
+    border-radius: 0.75em
+}
+#editMenu #addTotalUpdate{
+    background: #000;
+    width: 50%;
+    margin: 1em 0.5em
+}
+#editMenu #update{
+    background: #0071b8;
+    width: 50%;
+    margin: 1em 0.5em
+}
+#editMenu #close{
+    background: #c82333;
+    width: 50%;
+    margin: 1em 0.5em
+}
+
+#editMenu button:hover {
+    background: #1fa9ff;
+}
+
+#editMenu input, #editMenu button, #editMenu #validation{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%
+    
+}
+
+#editMenu #validation{
+    background: #f8d7da;
+    color: #721c24;;
+    border-color: #f5c6cb;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    padding: 0.75em 1.25em;
+    
+}
+

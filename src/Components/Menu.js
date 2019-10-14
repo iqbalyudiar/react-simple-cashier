@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import InputMenu from "./Input/InputMenu";
-import InputMoney from "./Input/InputMoney";
-import EditMenu from "./Edit/EditMenu";
+import FormInputMenu from "./Form/FormInputMenu";
+import FormInputMoney from "./Form/FormInputMoney";
+import FormEditMenu from "./Form/FormEditMenu";
 import TableCard from "./Table/TableCard";
 import TableHeader from "./Table/TableHeader";
 import TableMenu from "./Table/TableMenu";
@@ -16,7 +16,7 @@ export default function Menu() {
     item: "",
     price: null,
     quantity: null,
-    oderTab: null
+    orderTab: null
   };
 
   const tablesHeader = [
@@ -55,6 +55,8 @@ export default function Menu() {
   });
 
   const [validation, setValidation] = useState(false);
+
+  const [messages, setMessages] = useState("");
 
   const [result, setResult] = useState({
     orderRes: 0
@@ -97,14 +99,16 @@ export default function Menu() {
     setResult({ orderRes: parseInt(price) * parseInt(quantity) });
   };
 
-  const addTotalUpdate = () => {
+  const addTotalUpdate = e => {
+    e.preventDefault();
     let { price, quantity } = currentOrder;
     setCurrentOrder({
       orderTab: parseInt(price) * parseInt(quantity)
     });
   };
 
-  const addChange = () => {
+  const addChange = e => {
+    e.preventDefault();
     let { totalPrice } = total;
     let { money } = input;
 
@@ -130,18 +134,31 @@ export default function Menu() {
   };
 
   // CRUD
-  const addOrder = () => {
+  const addOrder = e => {
+    e.preventDefault();
     let { item, price, quantity } = input;
     // let { inputStyles, inputValidation } = styles;
     let { orderRes } = result;
 
-    if (input.item === "") {
+    if (item === "" || price === 0 || quantity === 0) {
       setValidation(true);
-    } else if (input.price === 0) {
+      setMessages(
+        "Please input your order in the form, your order cannot be empty"
+      );
+    } else if (isNaN(price)) {
       setValidation(true);
-    } else if (input.quantity === 0) {
+      setMessages("Your price must be number");
+    } else if (isNaN(quantity)) {
       setValidation(true);
-    } else {
+      setMessages("Your quantity must be number");
+    }
+
+    // else if (input.price === 0) {
+    //   setValidation(true);
+    // } else if (input.quantity === 0) {
+    //   setValidation(true);
+    // }
+    else {
       setValidation(false);
       setTable({
         lists: [
@@ -168,14 +185,30 @@ export default function Menu() {
     }
   };
 
-  const updateOrder = () => {
-    setEditing(false);
+  const updateOrder = e => {
+    e.preventDefault();
+    let { item, price, quantity, orderTab } = currentOrder;
 
-    setTable(({ lists }) => ({
-      lists: lists.map(list =>
-        list.id === currentOrder.id ? currentOrder : list
-      )
-    }));
+    if (item === "" || price === 0 || quantity === 0 || orderTab === 0) {
+      setValidation(true);
+      setMessages(
+        "Please input your order in the form, your order cannot be empty"
+      );
+    } else if (isNaN(price)) {
+      setValidation(true);
+      setMessages("Your price must be number");
+    } else if (isNaN(quantity)) {
+      setValidation(true);
+      setMessages("Your quantity must be number");
+    } else {
+      setEditing(false);
+
+      setTable(({ lists }) => ({
+        lists: lists.map(list =>
+          list.id === currentOrder.id ? currentOrder : list
+        )
+      }));
+    }
   };
 
   const editOrder = id => {
@@ -225,7 +258,9 @@ export default function Menu() {
       <h2 className="center">Menu</h2>
 
       {editing ? (
-        <EditMenu
+        <FormEditMenu
+          validation={validation}
+          text={messages}
           currentOrder={currentOrder}
           result={orderRes}
           editItem={handleEdit}
@@ -234,7 +269,7 @@ export default function Menu() {
           closeEditing={closeEditing}
         />
       ) : (
-        <InputMenu
+        <FormInputMenu
           validation={validation}
           result={orderRes}
           inputItem={handleInput}
@@ -242,6 +277,7 @@ export default function Menu() {
           item={item}
           price={price}
           quantity={quantity}
+          text={messages}
         />
       )}
 
@@ -283,10 +319,10 @@ export default function Menu() {
         <TableFooter total={totalOrder} result={total.totalPrice} />
       </TableCard>
       <TableCard>
-        {/* <TableHeader firstcol="" secondCol="" /> */}
-        <InputMoney inputMoney={handleInput} process={addChange} />
+        <FormInputMoney inputMoney={handleInput} process={addChange} />
         <p id="change">Your change is {total.change}</p>
       </TableCard>
+      {/* <TableHeader firstcol="" secondCol="" /> */}
     </div>
   );
 }

@@ -15,11 +15,7 @@ export default function InputMenu({ validation, result, inputItem, addOrder }) {
   return (
     <div id="inputMenu" className="flex-container center">
       <h3>Please Input Your Menu</h3>
-      {validation === true && (
-        <p id="validation">
-          Please input your order in the form, your order cannot be empty
-        </p>
-      )}
+      {validation === true && <p id="validation"></p>}
       <input
         name="item"
         type="text"
